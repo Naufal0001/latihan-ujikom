@@ -27,7 +27,7 @@
                                                     autofocus />
                                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                                 @error('email')
-                                                    <span class="help-block">{{ $message }}</span>
+                                                    <span class="">{{ $message }}</span>
                                                 @else
                                                     <span class="help-block with-errors"></span>
                                                 @enderror

@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Purcahse;
-use App\Models\Expenditure;
 use App\Models\Purchase;
 use App\Models\Sales;
-use App\Models\Slaes;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -37,18 +34,14 @@ class ReportController extends Controller
             $awal = date('Y-m-d', strtotime("+1 day", strtotime($awal)));
 
             $total_penjualan = Sales::where('created_at', 'LIKE', "%$tanggal%")->sum('bayar');
-            $total_pembelian = Purchase::where('created_at', 'LIKE', "%$tanggal%")->sum('bayar');
-            $total_pengeluaran = Expenditure::where('created_at', 'LIKE', "%$tanggal%")->sum('nominal');
 
-            $pendapatan = $total_penjualan - $total_pembelian - $total_pengeluaran;
+            $pendapatan = $total_penjualan;
             $total_pendapatan += $pendapatan;
 
             $row = array();
             $row['DT_RowIndex'] = $no++;
             $row['tanggal'] = tanggal_indonesia($tanggal, false);
             $row['penjualan'] = format_uang($total_penjualan);
-            $row['pembelian'] = format_uang($total_pembelian);
-            $row['pengeluaran'] = format_uang($total_pengeluaran);
             $row['pendapatan'] = format_uang($pendapatan);
 
             $data[] = $row;
@@ -57,9 +50,7 @@ class ReportController extends Controller
         $data[] = [
             'DT_RowIndex' => '',
             'tanggal' => '',
-            'penjualan' => '',
-            'pembelian' => '',
-            'pengeluaran' => 'Total Pendapatan',
+            'penjualan' => 'Total Pendapatan',
             'pendapatan' => format_uang($total_pendapatan),
         ];
 

@@ -7,11 +7,15 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^2.1",
+        "doctrine/dbal": "^4.0",
+        "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "laravel/ui": "^4.5",
         "livewire/livewire": "^3.4",
+        "milon/barcode": "^11.0",
+        "spatie/laravel-ignition": "^2.5",
         "yajra/laravel-datatables-oracle": "11"
     },
     "require-dev": {
